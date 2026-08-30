@@ -13,7 +13,7 @@ class FilterBar extends StatefulWidget implements PreferredSizeWidget {
     this.disableFading = false,
     this.scrollable = true,
     this.censored = false,
-    this.tabAlignment = TabBarAlignment.start,
+    this.tabBarAlignment = TabBarAlignment.start,
   }) : assert(items.length == controller.length);
 
   final List<Widget> items;
@@ -23,7 +23,7 @@ class FilterBar extends StatefulWidget implements PreferredSizeWidget {
   final bool disableFading;
   final bool scrollable;
   final bool censored;
-  final TabAlignment tabAlignment;
+  final TabBarAlignment tabBarAlignment;
 
   @override
   final Size preferredSize = const Size.fromHeight(42.0);
@@ -84,7 +84,6 @@ class _FilterBarState extends State<FilterBar> {
               .toList()
           : widget.items,
       onTap: widget.onTap,
-      tabAlignment: widget.tabAlignment,
     );
 
     return Container(

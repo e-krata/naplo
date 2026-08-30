@@ -405,7 +405,7 @@ class SettingsScreenState extends State<SettingsScreen>
                               showDialog(
                                 context: context,
                                 builder: (context) => WillPopScope(
-                                  onWillPop: () async => false,
+                                  onWillPop: () async => true,
                                   child: AlertDialog(
                                     shape: RoundedRectangleBorder(
                                         borderRadius:

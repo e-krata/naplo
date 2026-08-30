@@ -6,7 +6,7 @@ class KretaAPI {
   static String get logout => BaseKreta.kretaIdp + KretaApiEndpoints.revoke;
 
  
-  static String get nonce => BaseKreta.kretaIdp + KretaApiEndpoints.nonce;
+  static String get nonce => BaseKreta.kretaIdp + KretaApiEndpoints.nonceEndpoint;
 
   static const clientId = "filc-ellenorzo-mobile-android";
 
