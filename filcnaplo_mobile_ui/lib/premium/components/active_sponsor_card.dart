@@ -1,8 +1,8 @@
 import 'package:filcnaplo/icons/filc_icons.dart';
 import 'package:filcnaplo_mobile_ui/premium/premium_screen.dart';
-import 'package:naplo_premium/lib/models/premium_scopes.dart';
-import 'package:naplo_premium/lib/providers/premium_provider.dart';
-import 'package:naplo_premium/lib/ui/mobile/premium/upsell.dart';
+import 'package:naplo_premium/models/premium_scopes.dart';
+import 'package:naplo_premium/providers/premium_provider.dart';
+import 'package:naplo_premium/ui/mobile/premium/upsell.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';

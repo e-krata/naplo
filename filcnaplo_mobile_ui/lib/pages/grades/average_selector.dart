@@ -1,7 +1,7 @@
 import 'package:filcnaplo/theme/colors/colors.dart';
-import 'package:naplo_premium/lib/models/premium_scopes.dart';
-import 'package:naplo_premium/lib/providers/premium_provider.dart';
-import 'package:naplo_premium/lib/ui/mobile/premium/upsell.dart';
+import 'package:naplo_premium/models/premium_scopes.dart';
+import 'package:naplo_premium/providers/premium_provider.dart';
+import 'package:naplo_premium/ui/mobile/premium/upsell.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:filcnaplo_mobile_ui/pages/grades/grades_page.i18n.dart';

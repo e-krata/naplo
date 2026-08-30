@@ -1,10 +1,10 @@
 import 'package:filcnaplo/theme/colors/colors.dart';
 import 'package:filcnaplo_kreta_api/controllers/timetable_controller.dart';
 import 'package:filcnaplo_mobile_ui/common/system_chrome.dart';
-import 'package:naplo_premium/lib/models/premium_scopes.dart';
-import 'package:naplo_premium/lib/providers/premium_provider.dart';
-import 'package:naplo_premium/lib/ui/mobile/premium/upsell.dart';
-import 'package:naplo_premium/lib/ui/mobile/timetable/fs_timetable.dart';
+import 'package:naplo_premium/models/premium_scopes.dart';
+import 'package:naplo_premium/providers/premium_provider.dart';
+import 'package:naplo_premium/ui/mobile/premium/upsell.dart';
+import 'package:naplo_premium/ui/mobile/timetable/fs_timetable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
