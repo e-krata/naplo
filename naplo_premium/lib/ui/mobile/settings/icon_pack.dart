@@ -1,9 +1,9 @@
 import 'package:filcnaplo/models/settings.dart';
 import 'package:filcnaplo_mobile_ui/common/panel/panel_button.dart';
 import 'package:filcnaplo_mobile_ui/screens/settings/settings_helper.dart';
-import 'package:naplo_premium/models/premium_scopes.dart';
-import 'package:naplo_premium/providers/premium_provider.dart';
-import 'package:naplo_premium/ui/mobile/premium/upsell.dart';
+import 'package:naplo_premium/lib/models/premium_scopes.dart';
+import 'package:naplo_premium/lib/providers/premium_provider.dart';
+import 'package:naplo_premium/lib/ui/mobile/premium/upsell.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo_mobile_ui/screens/settings/settings_screen.i18n.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';

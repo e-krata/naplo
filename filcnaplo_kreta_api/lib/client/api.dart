@@ -1,13 +1,5 @@
 import 'package:intl/intl.dart';
 
-
-class BaseKreta {
-  static String baseUrl = 'https://ujkreta.onrender.com';
-}
-
-
-
-
 class KretaAPI {
 
   static String get login => BaseKreta.kretaIdp + KretaApiEndpoints.token;
