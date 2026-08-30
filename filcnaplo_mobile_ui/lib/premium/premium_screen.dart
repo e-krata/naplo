@@ -300,7 +300,7 @@ class PremiumScreen extends StatelessWidget {
                           onPressed: () {
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (context) {
-                              return const PremiumActivationView();
+                              return const SizedBox.shrink();
                             }));
                           },
                         ),
