@@ -52,7 +52,7 @@ dependencies:
   i18n_extension: ^10.0.1
   auto_size_text: ^3.0.0
   connectivity_plus: ^5.0.2
-  collection: ^1.18.0
+  collection: ^1.17.1
   share_plus: ^7.2.1
   image_picker: ^0.8.9
   path_provider: ^2.1.1
