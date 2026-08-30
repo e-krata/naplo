@@ -1,6 +1,4 @@
 import 'package:filcnaplo/models/settings.dart';
-import 'package:naplo_premium/api/auth.dart';
-import 'package:naplo_premium/models/premium_scopes.dart';
 import 'package:flutter/widgets.dart';
 
 class PremiumProvider extends ChangeNotifier {

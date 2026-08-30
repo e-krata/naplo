@@ -20,8 +20,6 @@ dependencies:
     path: "../filcnaplo_desktop_ui/"
   filcnaplo_kreta_api:
     path: "../filcnaplo_kreta_api/"
-  filcnaplo_premium:
-    path: "../naplo_premium/"
 
   flutter_localizations:
     sdk: flutter

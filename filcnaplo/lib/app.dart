@@ -15,7 +15,7 @@ import 'package:filcnaplo/theme/observer.dart';
 import 'package:filcnaplo/theme/theme.dart';
 import 'package:filcnaplo_kreta_api/client/client.dart';
 import 'package:filcnaplo_kreta_api/providers/grade_provider.dart';
-import 'package:naplo_premium/providers/goal_provider.dart';
+/providers/goal_provider.dart';
 import 'package:filcnaplo_kreta_api/providers/share_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -56,7 +56,6 @@ import 'package:filcnaplo/api/providers/user_provider.dart';
 import 'package:filcnaplo/api/providers/update_provider.dart';
 import 'package:filcnaplo_mobile_ui/pages/grades/calculator/grade_calculator_provider.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
-import 'package:naplo_premium/providers/premium_provider.dart';
 
 class App extends StatelessWidget {
   final SettingsProvider settings;

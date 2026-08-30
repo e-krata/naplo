@@ -1,7 +1,7 @@
 import 'package:filcnaplo_kreta_api/models/grade.dart';
-import 'package:naplo_premium/ui/mobile/goal_planner/goal_input.dart';
-import 'package:naplo_premium/ui/mobile/goal_planner/goal_planner.dart';
-import 'package:naplo_premium/ui/mobile/goal_planner/route_option.dart';
+/ui/mobile/goal_planner/goal_input.dart';
+/ui/mobile/goal_planner/goal_planner.dart';
+/ui/mobile/goal_planner/route_option.dart';
 import 'package:flutter/material.dart';
 
 enum PlanResult {

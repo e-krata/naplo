@@ -14,8 +14,6 @@ dependencies:
     path: ../filcnaplo/
   filcnaplo_kreta_api:
     path: ../filcnaplo_kreta_api/
-  filcnaplo_premium:
-    path: ../naplo_premium/
 
   flutter_feather_icons: ^2.0.0+1
   provider: ^5.0.0
