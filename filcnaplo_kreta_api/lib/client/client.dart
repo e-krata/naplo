@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:filcnaplo/api/login.dart';
-import 'package:filcnaplo/api/nonce.dart';
 import 'package:filcnaplo/api/providers/user_provider.dart';
+// import 'package:filcnaplo/api/nonce.dart'; // nincs nonce
 import 'package:filcnaplo/api/providers/status_provider.dart';
 import 'package:filcnaplo/models/settings.dart';
 import 'package:filcnaplo/models/user.dart';
@@ -27,6 +27,9 @@ class KretaClient {
   late final StatusProvider _status;
 
   bool _loginRefreshing = false;
+
+  
+  static const bool useUjKreta = true;
 
   KretaClient({
     this.accessToken,
@@ -53,15 +56,9 @@ class KretaClient {
     bool json = true,
     bool rawResponse = false,
   }) async {
-    Map<String, String> headerMap;
+    Map<String, String> headerMap = headers != null ? Map.from(headers) : {};
 
     if (rawResponse) json = false;
-
-    if (headers != null) {
-      headerMap = headers;
-    } else {
-      headerMap = {};
-    }
 
     try {
       http.Response? res;
@@ -86,7 +83,6 @@ class KretaClient {
           break;
         }
 
-        // Wait before retrying
         await Future.delayed(const Duration(milliseconds: 500));
       }
 
@@ -117,13 +113,7 @@ class KretaClient {
     bool json = true,
     Object? body,
   }) async {
-    Map<String, String> headerMap;
-
-    if (headers != null) {
-      headerMap = headers;
-    } else {
-      headerMap = {};
-    }
+    Map<String, String> headerMap = headers != null ? Map.from(headers) : {};
 
     try {
       http.Response? res;
@@ -156,7 +146,7 @@ class KretaClient {
       if (res == null) throw "Login error";
 
       if (json) {
-        print(jsonDecode(res.body));
+        if (res.body.isEmpty) return null;
         return jsonDecode(res.body);
       } else {
         return res.body;
@@ -175,13 +165,7 @@ class KretaClient {
     bool autoHeader = true,
     Map<String, String>? body,
   }) async {
-    Map<String, String> headerMap;
-
-    if (headers != null) {
-      headerMap = headers;
-    } else {
-      headerMap = {};
-    }
+    Map<String, String> headerMap = headers != null ? Map.from(headers) : {};
 
     try {
       http.StreamedResponse? res;
@@ -197,17 +181,11 @@ class KretaClient {
           if (!headerMap.containsKey("content-type")) {
             headerMap["content-type"] = "multipart/form-data";
           }
-          if (url.contains('kommunikacio/uzenetek')) {
-            headerMap["X-Uzenet-Lokalizacio"] = "hu-HU";
-          }
         }
 
         var request = http.MultipartRequest("POST", Uri.parse(url));
-
-        // request.files.add(value)
-
         request.fields.addAll(body ?? {});
-        request.headers.addAll(headers ?? {});
+        request.headers.addAll(headerMap);
 
         res = await request.send();
 
@@ -220,94 +198,173 @@ class KretaClient {
       }
 
       if (res == null) throw "Login error";
-
-      print(res.statusCode);
-
       return res.statusCode;
     } on http.ClientException catch (error) {
       print(
-          "ERROR: KretaClient.postAPI ($url) ClientException: ${error.message}");
+          "ERROR: KretaClient.sendFilesAPI ($url) ClientException: ${error.message}");
     } catch (error) {
-      print("ERROR: KretaClient.postAPI ($url) ${error.runtimeType}: $error");
+      print(
+          "ERROR: KretaClient.sendFilesAPI ($url) ${error.runtimeType}: $error");
     }
+  }
+
+
+  static Map<String, String> _passwordBody({
+    required String username,
+    required String password,
+    String? instituteCode,
+  }) {
+    return {
+      'grant_type': 'password',
+      'username': username,
+      'password': password,
+  
+      'userName': username,
+      if (instituteCode != null && instituteCode.isNotEmpty)
+        'institute_code': instituteCode,
+      'client_id': KretaAPI.clientId,
+    };
+  }
+
+  static Map<String, String> _refreshBody({
+    required String refreshToken,
+    String? instituteCode,
+  }) {
+    return {
+      'grant_type': 'refresh_token',
+      'refresh_token': refreshToken,
+      if (instituteCode != null && instituteCode.isNotEmpty)
+        'institute_code': instituteCode,
+      'client_id': KretaAPI.clientId,
+    };
   }
 
   Future<void> refreshLogin() async {
     if (_loginRefreshing) return;
     _loginRefreshing = true;
 
-    User? loginUser = _user.user;
-    if (loginUser == null) return;
+    try {
+      User? loginUser = _user.user;
+      if (loginUser == null) return;
 
-    Map<String, String> headers = {
+      final headers = <String, String>{
+        "content-type": "application/x-www-form-urlencoded",
+      };
+
+ 
+      if (!useUjKreta) {
+        try {
+          // ignore: unused_local_variable
+          final nonceStr = await getAPI(KretaAPI.nonce, json: false);
+         
+        } catch (_) {}
+      }
+
+      if (_settings.presentationMode) {
+        print("DEBUG: refreshLogin: ${loginUser.id}");
+      } else {
+        print("DEBUG: refreshLogin: ${loginUser.id} ${loginUser.name}");
+      }
+
+      // 1) Password grant (vagy ha van refresh_token, azt preferáld)
+      Map? loginRes;
+
+      if (refreshToken != null && refreshToken!.isNotEmpty) {
+        loginRes = await postAPI(
+          KretaAPI.login,
+          headers: headers,
+          body: _refreshBody(
+            refreshToken: refreshToken!,
+            instituteCode: loginUser.instituteCode,
+          ),
+        );
+      }
+
+      // Ha refresh nem ment / nincs token → password
+      if (loginRes == null || loginRes['access_token'] == null) {
+        loginRes = await postAPI(
+          KretaAPI.login,
+          headers: headers,
+          body: _passwordBody(
+            username: loginUser.username,
+            password: loginUser.password,
+            instituteCode: loginUser.instituteCode,
+          ),
+        );
+      }
+
+      if (loginRes != null) {
+        if (loginRes.containsKey("access_token")) {
+          accessToken = loginRes["access_token"];
+        }
+        if (loginRes.containsKey("refresh_token")) {
+          refreshToken = loginRes["refresh_token"];
+        }
+        if (loginRes.containsKey("id_token")) {
+          idToken = loginRes["id_token"];
+        }
+
+        loginUser.role =
+            JwtUtils.getRoleFromJWT(accessToken ?? "") ?? Role.student;
+      }
+    } finally {
+      _loginRefreshing = false;
+    }
+  }
+
+  /// Első bejelentkezés (login képernyő).
+  Future<bool> loginWithPassword({
+    required String username,
+    required String password,
+    String instituteCode = 'mockschool',
+  }) async {
+    final headers = <String, String>{
       "content-type": "application/x-www-form-urlencoded",
     };
 
-    String nonceStr = await getAPI(KretaAPI.nonce, json: false);
-    Nonce nonce =
-        getNonce(nonceStr, loginUser.username, loginUser.instituteCode);
-    headers.addAll(nonce.header());
-
-    if (_settings.presentationMode) {
-      print("DEBUG: refreshLogin: ${loginUser.id}");
-    } else {
-      print("DEBUG: refreshLogin: ${loginUser.id} ${loginUser.name}");
-    }
-
-    Map? loginRes = await postAPI(
+    final res = await postAPI(
       KretaAPI.login,
       headers: headers,
-      body: User.loginBody(
-        username: loginUser.username,
-        password: loginUser.password,
-        instituteCode: loginUser.instituteCode,
+      body: _passwordBody(
+        username: username,
+        password: password,
+        instituteCode: instituteCode,
       ),
     );
 
-    if (loginRes != null) {
-      if (loginRes.containsKey("access_token")) {
-        accessToken = loginRes["access_token"];
-      }
-      if (loginRes.containsKey("refresh_token")) {
-        refreshToken = loginRes["refresh_token"];
-      }
-
-      // Update role
-      loginUser.role =
-          JwtUtils.getRoleFromJWT(accessToken ?? "") ?? Role.student;
+    if (res is Map && res['access_token'] != null) {
+      accessToken = res['access_token'];
+      refreshToken = res['refresh_token'];
+      idToken = res['id_token'];
+      return true;
     }
-
-    if (refreshToken != null) {
-      Map? refreshRes = await postAPI(KretaAPI.login,
-          headers: headers,
-          body: User.refreshBody(
-              refreshToken: refreshToken!,
-              instituteCode: loginUser.instituteCode));
-      if (refreshRes != null) {
-        if (refreshRes.containsKey("id_token")) {
-          idToken = refreshRes["id_token"];
-        }
-      }
-    }
-
-    _loginRefreshing = false;
+    return false;
   }
 
   Future<void> logout() async {
-    User? loginUser = _user.user;
-    if (loginUser == null) return;
+    if (refreshToken == null) return;
 
-    Map<String, String> headers = {
+    final headers = <String, String>{
       "content-type": "application/x-www-form-urlencoded",
     };
 
-    await postAPI(
-      KretaAPI.logout,
-      headers: headers,
-      body: User.logoutBody(
-        refreshToken: refreshToken!,
-      ),
-      json: false,
-    );
+    try {
+      await postAPI(
+        KretaAPI.logout,
+        headers: headers,
+        body: {
+          'token': refreshToken!,
+          'token_type_hint': 'refresh_token',
+          'client_id': KretaAPI.clientId,
+        },
+        json: false,
+      );
+    } catch (_) {
+      // mockban a /connect/revocation lehet, hogy 404 – nem baj
+    }
+
+    accessToken = null;
+    refreshToken = null;
+    idToken = null;
   }
 }

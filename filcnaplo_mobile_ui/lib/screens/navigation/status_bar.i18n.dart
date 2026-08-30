@@ -5,14 +5,14 @@ extension Localization on String {
       {
         "en_en": {
           "Syncing data": "Syncing data",
-          "KRETA Maintenance": "KRETA Maintenance",
-          "KRETA API error": "KRETA API Error",
+          "KRETA Maintenance": "KRATA Maintenance",
+          "KRETA API error": "KRATA API Error",
           "No connection": "No connection",
         },
         "hu_hu": {
           "Syncing data": "Adatok frissítése",
-          "KRETA Maintenance": "KRÉTA Karbantartás",
-          "KRETA API error": "KRÉTA API Hiba",
+          "KRETA Maintenance": "KRÁTA Karbantartás",
+          "KRETA API error": "KRÁTA API Hiba",
           "No connection": "Nincs kapcsolat",
         },
         "de_de": {
