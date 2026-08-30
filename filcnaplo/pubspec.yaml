@@ -1,5 +1,5 @@
 name: filcnaplo
-description: "Nem hivatalos e-napló alkalmazás az e-Kréta rendszerhez"
+description: "Nem hivatalos e-napló alkalmazás az eKráta rendszerhez"
 homepage: https://refilc.hu
 publish_to: "none"
 
@@ -69,6 +69,7 @@ dependencies:
   flutter_staggered_grid_view: ^0.7.0
   sqflite_common_ffi_web: ^0.4.0
   image_crop: ^0.4.0
+  dynamic_color: ^1.6.6
 
 dev_dependencies:
   flutter_lints: ^3.0.1
@@ -76,8 +77,6 @@ dev_dependencies:
   flutter_native_splash: "^2.3.0"
   sqflite_common_ffi: ^2.0.0+3
 
-dependency_overrides:
-  dynamic_color: 1.6.6
 
 
 

@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:naplo_premium/providers/premium_provider.dart';
+import 'package:naplo_premium/ui/mobile/premium/activation_view/activation_view.dart';
+
 
 class GithubConnectButton extends StatelessWidget {
   const GithubConnectButton({super.key});

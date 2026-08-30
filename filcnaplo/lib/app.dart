@@ -23,6 +23,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'package:material_color_utilities/palettes/core_palette.dart';
 import 'package:provider/provider.dart';
+import 'package:naplo_premium/providers/premium_provider.dart';
+import 'package:naplo_premium/providers/goal_provider.dart';
+import 'package:naplo_premium/models/premium_scopes.dart';
 
 // Mobile UI
 import 'package:filcnaplo_mobile_ui/common/system_chrome.dart' as mobile;
@@ -34,6 +37,8 @@ import 'package:filcnaplo_mobile_ui/screens/settings/settings_route.dart'
     as mobile;
 import 'package:filcnaplo_mobile_ui/screens/settings/settings_screen.dart'
     as mobile;
+
+
 
 // Desktop UI
 import 'package:filcnaplo_desktop_ui/screens/navigation/navigation_screen.dart'

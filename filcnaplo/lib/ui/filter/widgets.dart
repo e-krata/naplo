@@ -29,6 +29,8 @@ import 'package:filcnaplo_mobile_ui/common/panel/panel.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_list_plus/transitions.dart';
 import 'package:provider/provider.dart';
+import 'package:naplo_premium/providers/premium_provider.dart';
+import 'package:naplo_premium/ui/mobile/premium/premium_inline.dart';
 
 const List<FilterType> homeFilters = [
   FilterType.all,

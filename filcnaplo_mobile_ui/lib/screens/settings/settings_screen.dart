@@ -32,7 +32,9 @@ import 'package:filcnaplo_mobile_ui/screens/settings/modify_subject_names.dart';
 import 'package:filcnaplo_mobile_ui/screens/settings/notifications_screen.dart';
 import 'package:filcnaplo_mobile_ui/screens/settings/privacy_view.dart';
 import 'package:filcnaplo_mobile_ui/screens/settings/settings_helper.dart';
-
+import 'package:naplo_premium/ui/mobile/settings/app_icon_screen.dart';
+import 'package:naplo_premium/ui/mobile/settings/modify_teacher_names.dart';
+import 'package:naplo_premium/ui/mobile/settings/welcome_message.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

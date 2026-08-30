@@ -4,6 +4,10 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:filcnaplo_mobile_ui/pages/grades/grades_page.i18n.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:naplo_premium/models/premium_scopes.dart';
+import 'package:naplo_premium/providers/premium_provider.dart';
+import 'package:naplo_premium/ui/mobile/premium/upsell.dart';
+
 
 final Map<int, String> avgDropItems = {
   0: "annual_average",

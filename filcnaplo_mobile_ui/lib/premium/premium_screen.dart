@@ -12,6 +12,10 @@ import 'package:filcnaplo_mobile_ui/premium/styles/gradients.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:naplo_premium/providers/premium_provider.dart';
+import 'package:naplo_premium/ui/mobile/premium/activation_view/activation_view.dart';
+import 'package:naplo_premium/ui/mobile/premium/upsell.dart';
+
 
 class PremiumScreen extends StatelessWidget {
   const PremiumScreen({super.key});

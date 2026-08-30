@@ -13,6 +13,9 @@ import 'package:filcnaplo/icons/filc_icons.dart';
 import 'package:filcnaplo_mobile_ui/screens/navigation/status_bar.dart';
 import 'package:filcnaplo_mobile_ui/screens/news/news_view.dart';
 import 'package:filcnaplo_mobile_ui/screens/settings/settings_screen.dart';
+import 'package:naplo_premium/providers/goal_provider.dart';
+import 'package:naplo_premium/ui/mobile/goal_planner/goal_complete_modal.dart';
+
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

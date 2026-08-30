@@ -32,6 +32,12 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:provider/provider.dart';
 import 'grades_page.i18n.dart';
 // /ui/mobile/goal_planner/new_goal.dart';
+import 'package:naplo_premium/models/premium_scopes.dart';
+import 'package:naplo_premium/providers/premium_provider.dart';
+import 'package:naplo_premium/ui/mobile/premium/upsell.dart';
+import 'package:naplo_premium/ui/mobile/goal_planner/goal_planner_screen.dart';
+import 'package:naplo_premium/ui/mobile/goal_planner/goal_state_screen.dart';
+
 
 class GradeSubjectView extends StatefulWidget {
   const GradeSubjectView(this.subject, {super.key, this.groupAverage = 0.0});
