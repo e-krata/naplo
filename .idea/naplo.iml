@@ -24,9 +24,9 @@
       <excludeFolder url="file://$MODULE_DIR$/filcnaplo/linux/flutter/ephemeral/.plugin_symlinks/dynamic_color/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/filcnaplo/linux/flutter/ephemeral/.plugin_symlinks/dynamic_color/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/filcnaplo/linux/flutter/ephemeral/.plugin_symlinks/dynamic_color/example/build" />
-      <excludeFolder url="file://$MODULE_DIR$/filcnaplo_premium/build" />
-      <excludeFolder url="file://$MODULE_DIR$/filcnaplo_premium/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/filcnaplo_premium/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/naplo_premium/build" />
+      <excludeFolder url="file://$MODULE_DIR$/naplo_premium/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/naplo_premium/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/filcnaplo/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/filcnaplo/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/filcnaplo/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/build" />

@@ -5,6 +5,6 @@
     <mapping directory="$PROJECT_DIR$/filcnaplo_desktop_ui" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/filcnaplo_kreta_api" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/filcnaplo_mobile_ui" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/filcnaplo_premium" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/naplo_premium" vcs="Git" />
   </component>
 </project>

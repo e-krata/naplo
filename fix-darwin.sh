@@ -18,7 +18,7 @@ flutter clean
 flutter pub get
 cd ..
 
-cd ./filcnaplo_premium
+cd ./naplo_premium
 flutter clean
 flutter pub get
 cd ..
