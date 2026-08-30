@@ -5,10 +5,10 @@ on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
-      
       - name: Decode Android keystore
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
@@ -18,7 +18,6 @@ jobs:
             exit 1
           fi
           echo "$KEYSTORE_BASE64" | base64 -d > "$GITHUB_WORKSPACE/upload-keystore.jks"
-          ls -la "$GITHUB_WORKSPACE/upload-keystore.jks"
           echo "KEYSTORE_PATH=$GITHUB_WORKSPACE/upload-keystore.jks" >> "$GITHUB_ENV"
 
       - name: Create key.properties
@@ -27,22 +26,9 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: |
-          if [ -z "$STORE_PASSWORD" ] || [ -z "$KEY_PASSWORD" ] || [ -z "$KEY_ALIAS" ]; then
-            echo "::error::STORE_PASSWORD, KEY_PASSWORD or KEY_ALIAS secret missing"
-            exit 1
-          fi
-          mkdir -p filcnaplo/android
-          cat > filcnaplo/android/key.properties << EOF
-          storeFile=$KEYSTORE_PATH
-          storePassword=$STORE_PASSWORD
-          keyPassword=$KEY_PASSWORD
-          keyAlias=$KEY_ALIAS
-          EOF
-          # remove leading spaces from heredoc if any - rewrite cleanly:
           printf 'storeFile=%s\nstorePassword=%s\nkeyPassword=%s\nkeyAlias=%s\n' \
             "$KEYSTORE_PATH" "$STORE_PASSWORD" "$KEY_PASSWORD" "$KEY_ALIAS" \
             > filcnaplo/android/key.properties
-          cat filcnaplo/android/key.properties | sed 's/Password=.*/Password=***/'
 
       - uses: actions/setup-java@v4
         with:
@@ -50,14 +36,15 @@ jobs:
           java-version: "17"
           cache: "gradle"
 
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.16.0"
-          channel: "stable"
-          cache: true
-          
-      - name: Install Flutter 3.16.0
-        run: git clone https://github.com/flutter/flutter.git -b 3.16.0 echo "$PWD/flutter/bin" >> $GITHUB_PATH
+     
+      - name: Install Flutter 3.16.0 manually
+        run: |
+          git clone https://github.com/flutter/flutter.git -b 3.16.0
+          echo "$PWD/flutter/bin" >> $GITHUB_PATH
+          echo "$PWD/flutter/bin/cache/dart-sdk/bin" >> $GITHUB_PATH
+
+      - name: Verify Flutter version
+        run: flutter --version
 
       - name: Flutter doctor
         run: flutter doctor
@@ -76,8 +63,3 @@ jobs:
             filcnaplo/build/app/outputs/flutter-apk/app-release.apk
             build/outputs/flutter-apk/app-release.apk
           if-no-files-found: warn
-          
-      
-      
-     
-
