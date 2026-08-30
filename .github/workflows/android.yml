@@ -70,3 +70,11 @@ jobs:
             filcnaplo/build/app/outputs/flutter-apk/app-release.apk
             build/outputs/flutter-apk/app-release.apk
           if-no-files-found: warn
+          
+      - name: Install Flutter 3.16.0
+        run: git clone https://github.com/flutter/flutter.git -b 3.16.0 echo "$PWD/flutter/bin" >> $GITHUB_PATH
+      
+      - name: Flutter doctor
+        run: flutter doctor
+
+
