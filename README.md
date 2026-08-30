@@ -1,11 +1,13 @@
 <p align=center>
-  <img src="https://media.discordapp.net/attachments/1111727410677825596/1113217167513624646/reFilc_Logo_Squircle.png?width=671&height=671" width=150>
-  <h1 align=center><b>reFilc</b></h1>
+  <img src="https://puspus-dev.github.io/ujkreta/src/logo-dark.png?width=671&height=671" width=150>
+  <h1 align=center><b>Napló</b></h1>
 </p>
 
-#### Nem hivatalos e-napló alkalmazás az e-KRÉTA rendszerhez - tanulóktól, tanulóknak.
+#### hivatalos e-napló alkalmazás az e-KRÁTA rendszerhez.
 
-[![Downloads](https://img.shields.io/github/downloads-pre/refilc/naplo/total?&logo=github&label=Downloads)](https://github.com/refilc/naplo/releases) &nbsp; [![Discord](https://img.shields.io/discord/1111649116020285532?logo=discord&label=Discord)](https://dc.refilc.hu)
+_Ez a napló a reFilcre alapul, és csak az API lett módosítva._
+
+[![Downloads](https://img.shields.io/github/downloads-pre/refilc/naplo/total?&logo=github&label=Downloads)](https://github.com/e-krata/naplo/releases) &nbsp; [![Discord](https://img.shields.io/discord/1111649116020285532?logo=discord&label=Discord)](https://megnincs.hu)
 
 ## Setup
 
@@ -35,15 +37,6 @@ Az összes (ugyan azon verzióhoz tartozó) contribution meg fog jelenni a relea
 
 -------
 
-# Team
-
-**kima:** head developer / project manager
-
-**Reiner, pdf, Pearoo, Zizi:** community- and project manager / developer
-
-**vrolandd, TMarccci:** head developer
-
-**dwe., xou:** designer
 
 **Péter:** video editor
 
