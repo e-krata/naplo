@@ -561,7 +561,7 @@ class SettingsScreenState extends State<SettingsScreen>
                     Material(
                         type: MaterialType.transparency,
                         child: MenuNotifications(settings: settings)),
-                    WelcomeMessagePanelButton(settings, user),
+                    
                   ],
                 ),
               ),
@@ -843,13 +843,9 @@ class SettingsScreenState extends State<SettingsScreen>
                     ),
                     MenuRenamedSubjects(
                       settings: settings,
+                   
                     ),
-                    MenuRenamedTeachers(
-                      settings: settings,
-                    ),
-                    PremiumCustomAppIconMenu(
-                      settings: settings,
-                    ),
+                   
                     // PanelButton(
                     //   onPressed: () {
                     //     SoonAlert.show(context: context);

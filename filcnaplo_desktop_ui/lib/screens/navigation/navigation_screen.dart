@@ -30,7 +30,6 @@ class NavigationScreenState extends State<NavigationScreen>
   late NavigationRoute selected;
   late SettingsProvider settings;
   late NewsProvider newsProvider;
-  late GoalProvider goalProvider;
   double topInset = 0.0;
 
   @override
@@ -108,7 +107,7 @@ class NavigationScreenState extends State<NavigationScreen>
   Widget build(BuildContext context) {
     settings = Provider.of<SettingsProvider>(context);
     newsProvider = Provider.of<NewsProvider>(context);
-    goalProvider = Provider.of<GoalProvider>(context);
+    
 
     // show news / complete goals
     WidgetsBinding.instance.addPostFrameCallback((_) {

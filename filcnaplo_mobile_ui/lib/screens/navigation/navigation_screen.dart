@@ -46,7 +46,6 @@ class NavigationScreenState extends State<NavigationScreen>
 
   late SettingsProvider settings;
   late NewsProvider newsProvider;
-  late GoalProvider goalProvider;
   late UpdateProvider updateProvider;
   late GradeProvider gradeProvicer;
   late AdProvider adProvider;
@@ -213,7 +212,7 @@ class NavigationScreenState extends State<NavigationScreen>
     setSystemChrome(context);
     settings = Provider.of<SettingsProvider>(context);
     newsProvider = Provider.of<NewsProvider>(context);
-    goalProvider = Provider.of<GoalProvider>(context);
+    
 
     // show news and complete goals
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -223,10 +222,6 @@ class NavigationScreenState extends State<NavigationScreen>
         newsProvider.lock();
       }
 
-      if (goalProvider.hasDoneGoals) {
-        GoalCompleteModal.show(goalProvider.doneSubject!, context: context);
-        goalProvider.lock();
-      }
     });
 
     handleQuickActions(context, (page) {
