@@ -23,7 +23,8 @@ class FilterBar extends StatefulWidget implements PreferredSizeWidget {
   final bool disableFading;
   final bool scrollable;
   final bool censored;
-  final TabBarAlignment tabBarAlignment;
+  final TabAlignment tabAlignment;
+
 
   @override
   final Size preferredSize = const Size.fromHeight(42.0);

@@ -212,11 +212,8 @@ class _PremiumCustomAccentColorSettingState
         : ThemeMode.dark;
 
     return WillPopScope(
-      onWillPop: () async {
-        Provider.of<ThemeModeObserver>(context, listen: false)
-            .changeTheme(settings.theme, updateNavbarColor: true);
-        return true;
-      },
+  onWillPop: () async => true,
+
       child: AnimatedBuilder(
         animation: _openAnimController,
         builder: (context, child) {

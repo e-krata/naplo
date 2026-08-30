@@ -231,22 +231,8 @@ class NavigationScreenState extends State<NavigationScreen>
 
     // ignore: deprecated_member_use
     return WillPopScope(
-      onWillPop: () async {
-        if (_navigatorState.currentState?.canPop() ?? false) {
-          _navigatorState.currentState?.pop();
-          if (!kDebugMode) {
-            return true;
-          }
-          return false;
-        }
+  onWillPop: () async => true,
 
-        if (selected.index != 0) {
-          setState(() => selected.index = 0);
-          _navigatorState.currentState?.pushReplacementNamed(selected.name);
-        }
-
-        return false;
-      },
       child: Scaffold(
         body: Column(
           children: [
