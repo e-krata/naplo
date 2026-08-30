@@ -56,10 +56,7 @@ dependencies:
   share_plus: ^7.2.1
   image_picker: ^0.8.9
   path_provider: ^2.1.1
-  image_crop:
-    git:
-      url: https://github.com/kimaah/image_crop.git
-    host: ^0.4.1
+  image_crop: ^0.4.1
   
 dev_dependencies:
   flutter_lints: ^3.0.1
