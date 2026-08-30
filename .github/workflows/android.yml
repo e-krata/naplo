@@ -6,35 +6,67 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Download Android keystore
-        id: android_keystore
-        uses: timheuer/base64-to-file@v1.0.3
-        with:
-          fileName: upload-keystore.jks
-          encodedString: ${{ secrets.KEYSTORE_BASE64 }}
-      - name: Create key.properties
+      - uses: actions/checkout@v4
+
+      
+      - name: Decode Android keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
         run: |
-          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > filcnaplo/android/key.properties
-          echo "storePassword=${{ secrets.STORE_PASSWORD }}" >> filcnaplo/android/key.properties
-          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> filcnaplo/android/key.properties
-          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> filcnaplo/android/key.properties
-      - uses: actions/setup-java@v3
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "::error::KEYSTORE_BASE64 secret is empty. Set it in repo Settings → Secrets."
+            exit 1
+          fi
+          echo "$KEYSTORE_BASE64" | base64 -d > "$GITHUB_WORKSPACE/upload-keystore.jks"
+          ls -la "$GITHUB_WORKSPACE/upload-keystore.jks"
+          echo "KEYSTORE_PATH=$GITHUB_WORKSPACE/upload-keystore.jks" >> "$GITHUB_ENV"
+
+      - name: Create key.properties
+        env:
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+        run: |
+          if [ -z "$STORE_PASSWORD" ] || [ -z "$KEY_PASSWORD" ] || [ -z "$KEY_ALIAS" ]; then
+            echo "::error::STORE_PASSWORD, KEY_PASSWORD or KEY_ALIAS secret missing"
+            exit 1
+          fi
+          mkdir -p filcnaplo/android
+          cat > filcnaplo/android/key.properties << EOF
+          storeFile=$KEYSTORE_PATH
+          storePassword=$STORE_PASSWORD
+          keyPassword=$KEY_PASSWORD
+          keyAlias=$KEY_ALIAS
+          EOF
+          # remove leading spaces from heredoc if any - rewrite cleanly:
+          printf 'storeFile=%s\nstorePassword=%s\nkeyPassword=%s\nkeyAlias=%s\n' \
+            "$KEYSTORE_PATH" "$STORE_PASSWORD" "$KEY_PASSWORD" "$KEY_ALIAS" \
+            > filcnaplo/android/key.properties
+          cat filcnaplo/android/key.properties | sed 's/Password=.*/Password=***/'
+
+      - uses: actions/setup-java@v4
         with:
           distribution: "zulu"
-          java-version: "17.x"
+          java-version: "17"
           cache: "gradle"
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.10.2"
           channel: "stable"
-          cache: "true"
+          cache: true
+
       - name: Install dependencies
         run: ./fix-pub.sh
+
       - name: Build
         run: cd filcnaplo && ./build.sh
+
       - name: Upload Android Release
         uses: actions/upload-artifact@v4
         with:
           name: android-release
-          path: build/outputs/flutter-apk/app-release.apk
+          path: |
+            filcnaplo/build/app/outputs/flutter-apk/app-release.apk
+            build/outputs/flutter-apk/app-release.apk
+          if-no-files-found: warn
