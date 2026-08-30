@@ -37,3 +37,7 @@ filcnaplo_premium/.dart_tool/
 
 filcnaplo/.DS_Store
 .DS_Store
+
+android/key.properties
+*.jks
+*.keystore
