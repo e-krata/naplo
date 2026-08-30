@@ -7,7 +7,8 @@
 
 _Ez a napló a reFilcre alapul, és csak az API lett módosítva._
 
-[![Downloads](https://img.shields.io/github/downloads-pre/refilc/naplo/total?&logo=github&label=Downloads)](https://github.com/e-krata/naplo/releases) &nbsp; [![Discord](https://img.shields.io/discord/1111649116020285532?logo=discord&label=Discord)](https://megnincs.hu)
+![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/e-krata/naplo/latest/total)
+ &nbsp; [![Discord](https://img.shields.io/discord/1111649116020285532?logo=discord&label=Discord)](https://sulinet.site.je/kratadiscord)
 
 ## Setup
 
