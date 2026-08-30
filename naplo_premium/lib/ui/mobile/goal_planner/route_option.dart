@@ -1,5 +1,5 @@
-import 'package:filcnaplo_premium/ui/mobile/goal_planner/goal_planner.dart';
-import 'package:filcnaplo_premium/ui/mobile/goal_planner/grade_display.dart';
+import 'package:naplo_premium/ui/mobile/goal_planner/goal_planner.dart';
+import 'package:naplo_premium/ui/mobile/goal_planner/grade_display.dart';
 import 'package:flutter/material.dart';
 
 enum RouteMark { recommended, fastest }

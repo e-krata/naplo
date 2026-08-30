@@ -1,7 +1,10 @@
 import 'package:intl/intl.dart';
 
 
-BaseKreta.baseUrl = 'https://ujkreta.onrender.com';
+class BaseKreta {
+  static String baseUrl = 'https://ujkreta.onrender.com';
+}
+
 
 
 
@@ -13,7 +16,7 @@ class KretaAPI {
  
   static String get nonce => BaseKreta.kretaIdp + KretaApiEndpoints.nonce;
 
-  static const clientId = "kreta-ellenorzo-mobile-android";
+  static const clientId = "filc-ellenorzo-mobile-android";
 
 
   // Az `iss` (intézménykód) a signature miatt marad; a host fix baseUrl.

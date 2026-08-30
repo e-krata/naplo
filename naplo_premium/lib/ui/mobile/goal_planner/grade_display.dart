@@ -1,4 +1,4 @@
-import 'package:filcnaplo_premium/ui/mobile/goal_planner/goal_input.dart';
+import 'package:naplo_premium/ui/mobile/goal_planner/goal_input.dart';
 import 'package:flutter/material.dart';
 
 class GradeDisplay extends StatelessWidget {

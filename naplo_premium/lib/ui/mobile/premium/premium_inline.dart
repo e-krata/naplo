@@ -1,4 +1,4 @@
-import 'package:filcnaplo_premium/ui/mobile/premium/upsell.dart';
+import 'package:naplo_premium/ui/mobile/premium/upsell.dart';
 import 'package:flutter/material.dart';
 
 enum PremiumInlineFeature { nickname, theme, widget, goal, stats }

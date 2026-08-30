@@ -1,6 +1,6 @@
 import 'package:animations/animations.dart';
-import 'package:filcnaplo_premium/providers/premium_provider.dart';
-import 'package:filcnaplo_premium/ui/mobile/premium/activation_view/activation_dashboard.dart';
+import 'package:naplo_premium/providers/premium_provider.dart';
+import 'package:naplo_premium/ui/mobile/premium/activation_view/activation_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';

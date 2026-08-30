@@ -9,10 +9,10 @@
 
 library hsv_picker;
 
-import 'package:filcnaplo_premium/ui/mobile/flutter_colorpicker/block_picker.dart';
-import 'package:filcnaplo_premium/ui/mobile/flutter_colorpicker/palette.dart';
-import 'package:filcnaplo_premium/ui/mobile/flutter_colorpicker/utils.dart';
-import 'package:filcnaplo_premium/ui/mobile/settings/theme.dart';
+import 'package:naplo_premium/ui/mobile/flutter_colorpicker/block_picker.dart';
+import 'package:naplo_premium/ui/mobile/flutter_colorpicker/palette.dart';
+import 'package:naplo_premium/ui/mobile/flutter_colorpicker/utils.dart';
+import 'package:naplo_premium/ui/mobile/settings/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:filcnaplo/theme/colors/colors.dart';
