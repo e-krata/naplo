@@ -13,7 +13,7 @@ class FilterBar extends StatefulWidget implements PreferredSizeWidget {
     this.disableFading = false,
     this.scrollable = true,
     this.censored = false,
-    this.tabAlignment = TabAlignment.start,
+    this.tabAlignment = TabBarAlignment.start,
   }) : assert(items.length == controller.length);
 
   final List<Widget> items;
