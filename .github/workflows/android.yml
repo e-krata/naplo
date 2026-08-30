@@ -32,12 +32,13 @@ jobs:
           java-version: "17"
           cache: "gradle"
 
-      # 🔥 Flutter 3.16.0 kézi telepítése – ez a kritikus rész
-      - name: Install Flutter 3.16.0 manually
-        run: |
-          git clone https://github.com/flutter/flutter.git -b 3.16.0
-          echo "$PWD/flutter/bin" >> $GITHUB_PATH
-          echo "$PWD/flutter/bin/cache/dart-sdk/bin" >> $GITHUB_PATH
+      - name: Install Flutter 3.16.0 (official)
+        run:
+        wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.0-stable.tar.xz
+        tar -xf flutter_linux_3.16.0-stable.tar.xz
+        echo "$PWD/flutter/bin" >> $GITHUB_PATH
+        cho "$PWD/flutter/bin/cache/dart-sdk/bin" >> $GITHUB_PATH
+
 
       - name: Verify Flutter version
         run: flutter --version
