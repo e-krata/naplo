@@ -125,7 +125,7 @@ class BaseKreta {
 class KretaApiEndpoints {
   static const token = "/connect/token";
   static const revoke = "/connect/revocation";
-  // static const nonce = "/nonce"; 
+  static const nonceEndpoint = "/nonce"; 
 
   // ÚjKréta Go router: /ellenorzo/v3/sajat/... (kisbetűs v3/sajat)
   static const notes = "/ellenorzo/v3/sajat/Feljegyzesek";
