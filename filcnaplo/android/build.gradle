@@ -9,7 +9,7 @@ buildscript {
 
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -21,16 +21,19 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
-        maven {
-            // [required] background_fetch
-            url "${project(':background_fetch').projectDir}/libs"
+        mavenCentral()
+        // background_fetch local libs – csak ha a plugin projekt már létezik
+        def bf = findProject(':background_fetch')
+        if (bf != null) {
+            maven {
+                url "${bf.projectDir}/libs"
+            }
         }
     }
 }
 
 subprojects {
-    afterEvaluate {project ->
+    afterEvaluate { project ->
         if (project.plugins.hasPlugin('android') || project.plugins.hasPlugin('android-library')) {
             android {
                 compileSdkVersion 33
