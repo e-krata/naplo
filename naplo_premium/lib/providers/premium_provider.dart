@@ -1,15 +1,19 @@
 import 'package:filcnaplo/models/settings.dart';
 import 'package:flutter/widgets.dart';
+import 'package:naplo_premium/api/auth.dart';
+import 'package:naplo_premium/models/premium_scopes.dart';
 
 class PremiumProvider extends ChangeNotifier {
   final SettingsProvider _settings;
-  List<String> get scopes => PremiumScopes.values.map((e) => e.name).toList();
-  bool hasScope(String scope) => scopes.contains(scope) || scopes.contains(PremiumScopes.all);
+
+  List<String> get scopes => _settings.premiumScopes;
+
+  bool hasScope(String scope) =>
+      scopes.contains(scope) || scopes.contains(PremiumScopes.all);
+
   String get accessToken => _settings.premiumAccessToken;
   String get login => _settings.premiumLogin;
-  bool get hasPremium => true;
-  bool hasScope(PremiumScopes scope) => true;
-
+  bool get hasPremium => scopes.isNotEmpty;
 
   late final PremiumAuth _auth;
   PremiumAuth get auth => _auth;
