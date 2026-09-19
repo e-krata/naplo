@@ -1,4 +1,4 @@
-package hu.ekrata.naplo;
+package hu.refilc.naplo;
 
 import io.flutter.embedding.android.FlutterActivity;
 
