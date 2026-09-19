@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:naplo_premium/ui/mobile/premium/upsell.dart';
 
-enum PremiumInlineFeature { nickname, theme, widget, goal, stats }
+enum PremiumInlineFeature {
+  nickname,
+  theme,
+  widget,
+  goal,
+  stats,
+}
 
 const Map<PremiumInlineFeature, String> _featureAssets = {
-  PremiumInlineFeature.nickname: "assets/images/premium_nickname_inline_showcase.png",
-  PremiumInlineFeature.theme: "assets/images/premium_theme_inline_showcase.png",
-  PremiumInlineFeature.widget: "assets/images/premium_widget_inline_showcase.png",
-  PremiumInlineFeature.goal: "assets/images/premium_goal_inline_showcase.png",
-  PremiumInlineFeature.stats: "assets/images/premium_stats_inline_showcase.png",
+  PremiumInlineFeature.nickname:
+      "assets/images/premium_nickname_inline_showcase.png",
+  PremiumInlineFeature.theme:
+      "assets/images/premium_theme_inline_showcase.png",
+  PremiumInlineFeature.widget:
+      "assets/images/premium_widget_inline_showcase.png",
+  PremiumInlineFeature.goal:
+      "assets/images/premium_goal_inline_showcase.png",
+  PremiumInlineFeature.stats:
+      "assets/images/premium_stats_inline_showcase.png",
 };
 
 const Map<PremiumInlineFeature, PremiumFeature> _featuresInline = {
@@ -19,11 +31,18 @@ const Map<PremiumInlineFeature, PremiumFeature> _featuresInline = {
 };
 
 class PremiumInline extends StatelessWidget {
-  const PremiumInline({super.key, required this.features});
+  const PremiumInline({
+    super.key,
+    required this.features,
+  });
 
   final List<PremiumInlineFeature> features;
 
   String _getAsset() {
+    if (features.isEmpty) {
+      return _featureAssets[PremiumInlineFeature.stats]!;
+    }
+
     for (int i = 0; i < features.length; i++) {
       if (DateTime.now().day % features.length == i) {
         return _featureAssets[features[i]]!;
@@ -34,6 +53,10 @@ class PremiumInline extends StatelessWidget {
   }
 
   PremiumFeature _getFeature() {
+    if (features.isEmpty) {
+      return PremiumFeature.gradestats;
+    }
+
     for (int i = 0; i < features.length; i++) {
       if (DateTime.now().day % features.length == i) {
         return _featuresInline[features[i]]!;
@@ -54,7 +77,10 @@ class PremiumInline extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(16.0),
               onTap: () {
-                PremiumLockedFeatureUpsell.show(context: context, feature: _getFeature());
+                PremiumLockedFeatureUpsell.show(
+                  context: context,
+                  feature: _getFeature(),
+                );
               },
             ),
           ),
