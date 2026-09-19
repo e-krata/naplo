@@ -24,7 +24,7 @@ class _GoalPlannerScreenState extends State<GoalPlannerScreen> {
   @override
   Widget build(BuildContext context) {
     final current = GoalPlannerHelper.averageEvals(grades);
-    final value = goal.clamp(current, 5.0);
+    final value = goal.clamp(current, 5.0).toDouble();
     final plans = current >= value ? <Plan>[] : GoalPlanner(value, grades).solve();
     final sorted = List<Plan>.from(plans)..sort((a, b) => a.plan.length.compareTo(b.plan.length));
 
