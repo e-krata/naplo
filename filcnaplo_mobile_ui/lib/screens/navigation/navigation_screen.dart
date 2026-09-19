@@ -52,6 +52,7 @@ class NavigationScreenState extends State<NavigationScreen>
   late UpdateProvider updateProvider;
   late GradeProvider gradeProvicer;
   late AdProvider adProvider;
+  late GoalProvider goalProvider;
 
   NavigatorState? get navigator => _navigatorState.currentState;
 
