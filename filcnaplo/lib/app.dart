@@ -167,10 +167,7 @@ class App extends StatelessWidget {
           ),
         ),
         ChangeNotifierProvider<GoalProvider>(
-          create: (context) => GoalProvider(
-            database: database,
-            user: user,
-          ),
+          create: (_) => GoalProvider(),
         ),
         ChangeNotifierProvider<ShareProvider>(
           create: (context) => ShareProvider(
