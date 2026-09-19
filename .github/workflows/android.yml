@@ -8,6 +8,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: false
 
       - name: Decode Android keystore
         env:
@@ -30,31 +32,34 @@ jobs:
             "$KEYSTORE_PATH" "$STORE_PASSWORD" "$KEY_PASSWORD" "$KEY_ALIAS" \
             > filcnaplo/android/key.properties
 
-      - uses: actions/setup-java@v5
+      - uses: actions/setup-java@v4
         with:
           distribution: "zulu"
           java-version: "17"
           cache: "gradle"
 
-      
-      - name: Install Flutter 3.16.0 (official)
+      - name: Install Flutter 3.16.0
         run: |
-          wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.0-stable.tar.xz
+          wget -q https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.0-stable.tar.xz
           tar -xf flutter_linux_3.16.0-stable.tar.xz
-          echo "$PWD/flutter/bin" >> $GITHUB_PATH
-          echo "$PWD/flutter/bin/cache/dart-sdk/bin" >> $GITHUB_PATH
+          echo "$PWD/flutter/bin" >> "$GITHUB_PATH"
+          echo "$PWD/flutter/bin/cache/dart-sdk/bin" >> "$GITHUB_PATH"
 
       - name: Verify Flutter version
         run: flutter --version
 
       - name: Flutter doctor
-        run: flutter doctor
+        run: flutter doctor -v
 
       - name: Install dependencies
-        run: ./fix-pub.sh
+        run: |
+          chmod +x fix-pub.sh
+          ./fix-pub.sh
 
       - name: Build
-        run: cd filcnaplo && ./build.sh
+        run: |
+          chmod +x filcnaplo/build.sh
+          cd filcnaplo && ./build.sh
 
       - name: Upload Android Release
         uses: actions/upload-artifact@v4
@@ -62,5 +67,4 @@ jobs:
           name: android-release
           path: |
             filcnaplo/build/app/outputs/flutter-apk/app-release.apk
-            build/outputs/flutter-apk/app-release.apk
-          if-no-files-found: warn
+          if-no-files-found: error
