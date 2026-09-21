@@ -3,6 +3,9 @@
   <h1 align=center><b>Napló</b></h1>
 </p>
 
+
+Ez az Ellenőrző már nem használt. Ennél van újabb. Újabb projektek az eFolio, és a reFilc(KRÁTA).
+
 #### hivatalos e-napló alkalmazás az e-KRÁTA rendszerhez.
 
 _Ez a napló a Filcre alapul, és csak az API lett módosítva._
