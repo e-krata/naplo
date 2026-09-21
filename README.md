@@ -5,7 +5,7 @@
 
 #### hivatalos e-napló alkalmazás az e-KRÁTA rendszerhez.
 
-_Ez a napló a reFilcre alapul, és csak az API lett módosítva._
+_Ez a napló a Filcre alapul, és csak az API lett módosítva._
 
 ![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/e-krata/naplo/latest/total)
  &nbsp; [![Discord](https://img.shields.io/discord/1111649116020285532?logo=discord&label=Discord)](https://sulinet.site.je/kratadiscord)
